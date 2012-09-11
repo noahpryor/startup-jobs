@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  url: MyString
+  company_id: 1
+  date_posted: 2012-09-10 23:57:22
+  dated_updated: 2012-09-10 23:57:22
+  technical: 1
+  internship: 1
+
+two:
+  title: MyString
+  url: MyString
+  company_id: 1
+  date_posted: 2012-09-10 23:57:22
+  dated_updated: 2012-09-10 23:57:22
+  technical: 1
+  internship: 1
