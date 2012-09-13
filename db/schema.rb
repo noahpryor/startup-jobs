@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911035722) do
+ActiveRecord::Schema.define(:version => 20120913045026) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
     t.string   "string"
     t.string   "url"
-    t.string   "text"
+    t.text     "text"
     t.string   "jobs_url"
     t.string   "description"
     t.string   "founded"
@@ -27,8 +27,25 @@ ActiveRecord::Schema.define(:version => 20120911035722) do
     t.string   "float"
     t.string   "location"
     t.string   "category"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "crunchbase_slug"
+    t.string   "image"
+    t.string   "deadpooled_url"
+    t.integer  "funding_rounds"
+    t.text     "overview"
+    t.string   "twitter_username"
+    t.string   "blog_url"
+  end
+
+  create_table "imports", :force => true do |t|
+    t.string   "datatype"
+    t.integer  "processed"
+    t.string   "csv_file_name"
+    t.string   "csv_content_type"
+    t.integer  "csv_file_size"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "jobs", :force => true do |t|

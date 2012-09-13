@@ -1,53 +1,86 @@
-<%= form_for(@company) do |f| %>
-  <% if @company.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
-
-      <ul>
-      <% @company.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @company, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :string, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :string, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :url, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :url, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :text, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :text, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :jobs_url, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :jobs_url, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :founded, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :founded, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :employees, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :employees, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :integer, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :integer, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :funding, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :funding, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :float, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :float, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :location, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :location, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :category, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :category, :class => 'text_field' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :url %><br />
-    <%= f.text_field :url %>
-  </div>
-  <div class="field">
-    <%= f.label :jobs_url %><br />
-    <%= f.text_field :jobs_url %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :founded %><br />
-    <%= f.text_field :founded %>
-  </div>
-  <div class="field">
-    <%= f.label :employees %><br />
-    <%= f.text_field :employees %>
-  </div>
-  <div class="field">
-    <%= f.label :funding %><br />
-    <%= f.text_field :funding %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
-  </div>
-  <div class="field">
-    <%= f.label :category %><br />
-    <%= f.text_field :category %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                companies_path, :class => 'btn' %>
   </div>
 <% end %>
