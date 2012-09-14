@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120913045026) do
+ActiveRecord::Schema.define(:version => 20120914011402) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20120913045026) do
     t.text     "overview"
     t.string   "twitter_username"
     t.string   "blog_url"
+    t.string   "job_score_feed"
+    t.string   "resumator_feed"
   end
 
   create_table "imports", :force => true do |t|

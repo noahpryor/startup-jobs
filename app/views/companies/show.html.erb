@@ -1,41 +1,105 @@
 <%- model_class = Company -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><%=t '.title', :default => @company.name %></h1>
 </div>
-<%=   if   Crunchbase::Company.find(@company.name) 
+<div class="row">
+  <div class="span7">
+      <strong>Overview: </strong><%= @company.overview.html_safe %>
+  </div>
+  <div id="companyfacts" class="span2">
+    <table id="companytable" class="table table-bordered">
+      <tr>
+        <td><b>Website</b></td>
+
+          <td><%= link_to @company.name, @company.url %></td>
+        </tr>
+         <tr>
+        <td><b>Jobs Page</b></td>
+
+          <td><%= link_to "jobs", @company.jobs_url %></td>
+        </tr>
+        <td><b>Blog</b></td>
+
+          <td><%= link_to "blog", @company.blog_url %></td>
+        </tr>
+        <td><b>Founded</b></td>
+
+          <td><%= @company.founded %> </td>
+        </tr>
+         <td><b>Employees</b></td>
+
+          <td><%= @company.employees %> </td>
+        </tr>
+        <tr>
+          <td><b>Funding</b></td>
+
+          <td><%= @company.funding %> </td>
+        </tr>
+         <tr>
+          <td><b>Funding Rounds</b></td>
+
+          <td><%= @company.funding_rounds %> </td>
+        </tr>
+        <td><b># Jobs</b></td>
+
+          <td><%= @company.funding_rounds %> </td>
+        </tr>
+         <tr>
+          <td><b>Twitter</b></td>
+
+          <td><a href='http://twitter.com/<%= @company.twitter_username %>'>@<%=@company.twitter_username %> </td>
+        </tr>
+        </table>
+    </div>
+</div>
+<% if @company.job_score_feed
+feed_url = @company.job_score_feed
+
+feed = Feedzirra::Feed.fetch_and_parse(feed_url)
+
+jobs_count = feed.entries.count
+
+ %>
+<div class="row">
+  <h1><%= jobs_count %> Jobs at <%= @company.name %> </h1>
+</div>
+<div class="row">
+
+<table class="table table-striped table-condensed">
+<tr>
+<th>Title</th>
+<th>Category</th>
+<th>Posted</th>
+ <%       entries = feed.entries.sort {|a,b| b.published <=> a.published}
+        entries.each do |job|
+          if job.categories.second.to_s.include? 'NY'
+            content = job.content.split("future together.").to_a
+            content3 = content[3]
+            content4 = content[4]
+            job_description = content4.to_s + content3.to_s           %> 
+ 
+<tr>
+    <td><%= link_to job.title, job.url %></td>
+ -->
+    <td><%=  job.categories.first %></td>
+
+    <td><%= distance_of_time_in_words_to_now(job.published, 1.minutes.from_now) %> ago </td>
+
+ </tr>   
+            <% end %>
+
+<% end %>
+
+</table>
+</div>
+
+<% end %>
+<%   if   Crunchbase::Company.find(@company.name) 
 
               company_crunchbase = Crunchbase::Company.find(@company.name) 
                  company_crunchbase.permalink
                  end
                  %>
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @company.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:string) %>:</strong></dt>
-  <dd><%= @company.string %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:url) %>:</strong></dt>
-  <dd><%= @company.url %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:text) %>:</strong></dt>
-  <dd><%= @company.text %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:jobs_url) %>:</strong></dt>
-  <dd><%= @company.jobs_url %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @company.description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:founded) %>:</strong></dt>
-  <dd><%= @company.founded %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:employees) %>:</strong></dt>
-  <dd><%= @company.employees %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:integer) %>:</strong></dt>
-  <dd><%= @company.integer %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:funding) %>:</strong></dt>
-  <dd><%= @company.funding %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:float) %>:</strong></dt>
-  <dd><%= @company.float %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:location) %>:</strong></dt>
-  <dd><%= @company.location %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:category) %>:</strong></dt>
-  <dd><%= @company.category %></dd>
-</dl>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

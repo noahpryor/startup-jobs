@@ -2,11 +2,17 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
+<ul>
 <% 
 
-        crunchbase = Crunchbase::Company.find("Github")
-        test = crunchbase.name
-%><%= test %>     
+        feed = Feedzirra::Feed.fetch_and_parse("http://www.jobscore.com/jobs/foursquare/feed.atom")
+
+        entries = feed.entries
+        entries.each do |job|
+%><%= 
+    job.title %>
+ %>   
+<% end %>
 <table class="table table-striped">
   <thead>
     <tr>

@@ -2,6 +2,20 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
+
+<%
+doc = Nokogiri::XML(open("http://app.theresumator.com/feeds/export/jobs/ycharts"))
+ job = doc.xpath("//job") 
+%>
+<%=
+  doc.xpath("//job") 
+
+ job.each do |t|
+  t
+end
+
+ %>
+
 <table class="table table-striped">
   <thead>
     <tr>

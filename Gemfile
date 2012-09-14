@@ -8,7 +8,10 @@ gem 'rails', '3.2.8'
 gem 'pg'
 gem "crunchbase", "~> 0.2.2"
 gem 'paperclip'
-
+gem 'feedzirra'
+gem 'formtastic'
+gem 'formtastic-bootstrap'
+gem 'nokogiri'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

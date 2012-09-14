@@ -1,6 +1,6 @@
 class Company < ActiveRecord::Base
   has_many :jobs
-  attr_accessible :category, :description, :employees, :founded, :funding, :jobs_url, :location, :name, :crunchbase_slug, :url, :image, :deadpooled_url, :funding_rounds, :overview, :twitter_username, :blog_url
+  attr_accessible :category, :description, :employees, :founded, :funding, :jobs_url, :location, :name, :crunchbase_slug, :url, :image, :deadpooled_url, :funding_rounds, :overview, :twitter_username, :blog_url, :job_score_feed, :string, :integer, :float, :text, :funding_rounds
 
 #if Crunchbase::Company.find(name) 
          # company_crunchbase = Crunchbase::Company.find(name) 
